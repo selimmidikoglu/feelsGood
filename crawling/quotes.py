@@ -42,6 +42,7 @@ for author_name in authors_names:
         quotes_dic[i] = {"id": id,"author": author_name,"quote": quote.text}
         id = id + 1
         print(quotes_dic[i])
+        print("adnan")
     keywords = driver.find_elements_by_xpath( "//div[@class ='kw-box']/a")
     for keyword  in keywords:
         if counter<5:
