@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import json
 
-
+#fucntion to check if dictionary of keywords has the key
 def keyExistence(key,dict):
     keyExistence = False
     if key in dict:
@@ -25,18 +25,24 @@ authors = driver.find_elements_by_class_name("authorContentName")
 authors_names = []
 quotes_dic = {}
 kw_quoteId = {}
-'''/html/body/div[5]/div[2]/div[1]/div/div/div[1]/div[2]/div/div[20]/a/span'''
+
 for author in authors:
     authors_names.insert(len(authors_names),author.text)
-id = 0 # starting from 0 assigning ids to everyquote
+
+# Variables for looping and creating keys
+# starting from 0 assigning ids to everyquote
+id = 0 
 i = 0
 counter = 0
-id_fake = 0 # since I loop through 5 different keywords id of one quote is applicable for 5 keyword
+# since I loop through 5 different keywords id of one quote is applicable for 5 keyword
+id_fake = 0 
+
+
 for author_name in authors_names:
     time.sleep(1)
     authors = driver.find_elements_by_xpath("//div[@class = 'bqLn']/a/span")
     authors[i].click()
-    driver.execute_script("window.scrollTo(0, 100)") 
+    driver.execute_script("window.scrollTo(0, 200)") 
     quotes = driver.find_elements_by_xpath("//div[@class='clearfix']/a[1]")
     for quote in quotes:
         quotes_dic[i] = {"id": id,"author": author_name,"quote": quote.text}
@@ -66,27 +72,3 @@ for author_name in authors_names:
     print(driver.current_url)
     driver.back()
     i = i + 1 
-
-
-
-'''quotes = driver.find_elements_by_xpath("//div[@class='clearfix']/a[1]")
-keywords = driver.find_elements_by_class_name("oncl_list_kc")
-  for keyword in keywords:
-        if counter<5:
-            kw_quoteId[keyword] = str(id)
-            counter = counter + 1
-            print(kw_quoteId)
-        else:
-            counter = 0'''
-'''counter = 0
-for keyword in keywords:
-    if counter == 5:
-        counter = 0
-        print("\n") 
-    print(keyword.text)
-    counter = counter + 1'''
-       
-
-'''//*[@id="qpos_1_1"]/div[1]/div/a[1]'''
-
-'''//*[@id="qpos_1_2"]/div[2]'''
